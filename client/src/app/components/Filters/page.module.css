@@ -1,0 +1,83 @@
+.filters {
+    max-width: 360px;
+    width: 100%;
+    height: calc(100vh - 130px);
+    position: fixed;
+    top: 130px;
+    right: -360px;
+    z-index: 2;
+    border-left: 1px solid var(--gray-color);
+    border-top: 1px solid var(--gray-color);
+    background-color: white;
+    padding: 1rem;
+    transition: right 0.3s;
+}
+
+.filters.expand {
+    right: 0;
+    transition: right 0.3s;
+}
+
+.header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-color);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close_icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.filters h3 {
+    font-size: 1.5rem;
+}
+
+.filters form {
+    width: 100%;
+}
+
+.filters h5 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.filters input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    height: 46px;
+    outline: none;
+}
+
+.apply_btn {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.5rem;
+    background: var(--primary);
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    cursor: pointer;
+    height: 46px;
+    font-weight: 700;
+}
+
+.apply_btn:hover {
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        padding: 1rem 2rem;
+    }
+
+    .apply_btn {
+        right: 2rem;
+    }
+}

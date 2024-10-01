@@ -1,3 +1,54 @@
-.page {
+.home {
+  position: relative;
   height: 100%;
+}
+
+.home__inner {
+  height: 100%;
+}
+
+.courses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -15px;
+  width: auto;
+  margin-top: 75px;
+  padding: 0 6rem;
+}
+
+.my_masonry_grid_column {
+  padding-left: 15px;
+  background-clip: padding-box;
+}
+
+.my_masonry_grid_column > div {
+  margin-bottom: 15px;
+}
+
+.header {
+  position:fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0 6rem;
+  height: 60px;
+  background-color: white;
+}
+
+.filters_btn {
+  background: none;
+  border: 1px solid var(--secondary);
+  padding: 0 .9rem;
+  cursor: pointer;
+  height: 38px;
+}
+
+@media screen and (max-width: 768px) {
+  .courses, .header {
+    padding: 0 2rem;
+  }
 }
