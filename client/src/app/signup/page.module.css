@@ -1,8 +1,8 @@
-.login {
+.signup {
     height: 100%;
 }
 
-.login__inner {
+.signup__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,16 +10,16 @@
     height: 100%;
 }
 
-.login_form {
+.signup_form {
     width: 400px;
     margin-bottom: 2rem;
 }
 
-.login_form h1 {
+.signup_form h1 {
     font-size: 3rem;
 }
 
-.login_form h1 span {
+.signup_form h1 span {
     color: var(--primary);
     text-shadow: 
         -1px -1px 0 var(--secondary),
@@ -35,13 +35,13 @@
     margin-bottom: 2rem;
 }
 
-.login_form form {
+.signup_form form {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.login_form form input {
+.signup_form form input {
     padding: 0.7rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
@@ -49,7 +49,17 @@
     outline: none;
 }
 
-.login_form form button {
+.fullname {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.fullname input {
+    width: 48%;
+}
+
+.signup_form form button {
     padding: 0.5rem;
     background: var(--primary);
     border: 1px solid var(--secondary);
@@ -59,53 +69,53 @@
     font-weight: 700;
 }
 
-.register {
+.login {
     margin-top: .7rem;
 }
 
-.register a {
+.login a {
     text-decoration: underline;
 }
 
-.login_image {
+.signup_image {
     position: relative;
     width: 400px;
     height: 400px;
     margin-bottom: 2rem;
 }
 
-.login_image img {
+.signup_image img {
     height: auto !important;
 }
 
 @media screen and (max-width: 1024px) {
-    .login_image {
+    .signup_image {
         display: none;
     }
 
-    .login__inner {
+    .signup__inner {
         justify-content: center;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .login__inner {
+    .signup__inner {
         padding: 0 2rem;
     }
 }
 
 @media screen and (max-width: 555px) {
-    .login_form {
+    .signup_form {
         width: 80%;
     }
 
-    .login_form h1 {
+    .signup_form h1 {
         font-size: 2rem;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .login_form {
+    .signup_form {
         width: 100%;
     }
 
