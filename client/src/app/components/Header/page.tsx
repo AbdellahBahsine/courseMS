@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./page.module.css";
 import Link from 'next/link';
 
 import { FaSearch } from "react-icons/fa";
+import { useUser } from '@/app/context/user.context';
 
 import Search from './components/Search/page';
 
@@ -15,6 +16,7 @@ const Page = () => {
     const [searchResults, setSearchResults] = useState<courseObject[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [searchVisible, setSearchVisible] = useState<boolean>(false);
+    const {user, loading} = useUser();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -35,6 +37,8 @@ const Page = () => {
     const handleClick = () => {
         setSearchVisible(!searchVisible);
     }
+
+    if (loading) return null;   
 
     return (
         <header className={styles.header}>
@@ -68,10 +72,20 @@ const Page = () => {
                         )
                     }
                 </div>
-                <div className={styles.buttons}>
-                    <button className={styles.login_button}><Link href="/login" >Log In</Link></button>
-                    <button className={styles.signup_button}><Link href="/signup">Sign Up</Link></button>
-                </div>
+
+                {
+                    user ? (
+                        <div>
+                            <span>Welcome!</span>
+                            {/* <Link href="/profile">Profile</Link>
+                            <Link href="/logout">Logout</Link> */}
+                        </div>
+                        ) : (
+                        <div className={styles.buttons}>
+                            <button className={styles.login_button}><Link href="/login" >Log In</Link></button>
+                            <button className={styles.signup_button}><Link href="/signup">Sign Up</Link></button>
+                        </div>
+                )}
             </div>
 
             {
