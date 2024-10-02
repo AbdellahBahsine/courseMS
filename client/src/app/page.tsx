@@ -1,53 +1,34 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 
 import Masonry from 'react-masonry-css';
+import axios from 'axios';
 
 import Course from './components/Course/page';
 import Filters from './components/Filters/page';
+import withAuth from './components/WithAuth/WithAuth';
 
 function Home() {
 
-  const [coursesList, setCoursesList] = useState([
-    {
-      title: "Open-architected bandwidth-monitored contingency",
-      description: "Theory president share Republican soon figure. She skill his as bit raise. Bring notice every big onto institution behind listen. Character will way old.",
-      instructor: "Beth Williamson",
-      schedule: "Tuesday 10:00"
-    },
-    {
-        title: "Self-enabling analyzing neural-net",
-        description: "Wear people item over. Direction watch rock and.",
-        instructor: "Hannah Ward",
-        schedule: "Thursday 13:00"
-    },
-    {
-      title: "Operative high-level hierarchy",
-      description: "Policy certainly music strategy do up effort. Camera its down growth hundred gas.",
-      instructor: "Regina Ford",
-      schedule: "Wednesday 13:00"
-    },
-    {
-        title: "Digitized systematic strategy",
-        description: "Next life cover help teach generation she. Late apply town crime consumer.",
-        instructor: "Michael Meyers Jr.",
-        schedule: "Thursday 14:00"
-    },
-    {
-        title: "Exclusive attitude-oriented open system",
-        description: "Finally make health. Yeah huge process effort choose.",
-        instructor: "Kimberly Hatfield",
-        schedule: "Monday 14:00"
-    },
-    {
-        title: "Function-based methodical access",
-        description: "Possible material example night worry whole. Economy type ask. Group on little.",
-        instructor: "Charles Lynn",
-        schedule: "Wednesday 9:00"
-    }]);
+    const [courses, setCourses] = useState([]);
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
+    const limit = 10;
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+    const fetchCourses = async (page: number) => {
+      try {
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URI}/courses`, {
+          params: { page, limit },
+        });
+        setCourses(data.courses);
+        setTotal(data.total);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
 
     const breakpointColumnsObj = {
       default: 4,
@@ -59,6 +40,12 @@ function Home() {
     const handleClick = () => {
       setIsFiltersOpen(true);
     }
+
+    useEffect(() => {
+      fetchCourses(page);
+    }, [page]);
+
+    const totalPages = Math.ceil(total / limit);
 
   return (
     <div className={styles.home}>
@@ -74,11 +61,22 @@ function Home() {
           columnClassName={styles.my_masonry_grid_column}
         >
           {
-            coursesList.map((course, index) => (
+            courses.map((course, index) => (
               <Course key={index} course={course} />
             ))
           }
         </Masonry>
+        <div className={styles.pagination}>
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            Previous
+          </button>
+          <span>
+            Page {page} of {totalPages}
+          </span>
+          <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+            Next
+          </button>
+      </div>
         <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} />
       </div>
 
@@ -86,4 +84,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withAuth(Home);;

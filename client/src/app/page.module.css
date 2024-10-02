@@ -1,9 +1,10 @@
 .home {
   position: relative;
-  height: 100%;
+  height: calc(100% - 75px);
 }
 
 .home__inner {
+  position: relative;
   height: 100%;
 }
 
@@ -15,6 +16,7 @@
   width: auto;
   margin-top: 75px;
   padding: 0 6rem;
+  padding-bottom: 80px;
 }
 
 .my_masonry_grid_column {
@@ -47,8 +49,18 @@
   height: 38px;
 }
 
+.pagination {
+  position: absolute;
+  right: 6rem;
+  bottom: 40px;
+}
+
 @media screen and (max-width: 768px) {
   .courses, .header {
     padding: 0 2rem;
+  }
+
+  .pagination {
+    right: 2rem;
   }
 }
