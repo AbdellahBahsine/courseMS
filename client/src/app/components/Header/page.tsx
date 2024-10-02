@@ -39,7 +39,7 @@ const Page = () => {
     return (
         <header className={styles.header}>
             <div className={styles.header__inner}>
-                <Link href="#">LOGO</Link>
+                <Link href="/">LOGO</Link>
                 <div className={styles.search_icon} onClick={handleClick}>
                     <FaSearch />
                 </div>

@@ -8,7 +8,7 @@ import Masonry from 'react-masonry-css';
 import Course from './components/Course/page';
 import Filters from './components/Filters/page';
 
-export default function Home() {
+function Home() {
 
   const [coursesList, setCoursesList] = useState([
     {
@@ -85,3 +85,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

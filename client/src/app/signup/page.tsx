@@ -5,6 +5,10 @@ import styles from "./page.module.css";
 import Image from 'next/image';
 
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from "next/navigation";
+
+import { showErrorToast, showSuccessToast } from '../components/showToast/page';
 
 const page = () => {
 
@@ -15,16 +19,58 @@ const page = () => {
         password: "",
         confirmPassword: ""
     });
+    const router = useRouter();
 
     const { firstName, lastName, username, password, confirmPassword } = userCredentials;
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
     }
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(userCredentials);
+
+        if (password !== confirmPassword) {
+            showErrorToast('Passwords do not match.');
+            return;
+        }
+
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URI}/auth/register`, {
+              firstName,
+              lastName,
+              username,
+              password,
+            });
+      
+            showSuccessToast('Registration successful! You can now log in.');
+      
+            setUserCredentials({
+                firstName: "",
+                lastName: "",
+                username: "",
+                password: "",
+                confirmPassword: ""
+            });
+
+            router.push('/login');
+
+        } catch (err) {
+            if (axios.isAxiosError(err) && err.response) {
+                const { message } = err.response.data;
+
+                if (typeof message === 'string') {
+                    showErrorToast(message);
+                } else if (Array.isArray(message)) {
+                    showErrorToast(message[0]);
+                } else {
+                    showErrorToast('An unexpected error occurred.');
+                }
+            } else {
+                showErrorToast('An unexpected error occurred.');
+            }
+        }
     }
 
     return (
@@ -33,14 +79,14 @@ const page = () => {
                 <div className={styles.signup_form}>
                     <h1>Sign <span>Up</span></h1>
                     <div className={styles.line}></div>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className={styles.fullname}>
-                            <input type="text" placeholder="First name" value={firstName} name="firstName" onChange={onChange} />
-                            <input type="text" placeholder="Last name" value={lastName} name="lastName" onChange={onChange} />
+                            <input type="text" placeholder="First name" value={firstName} name="firstName" onChange={handleChange} />
+                            <input type="text" placeholder="Last name" value={lastName} name="lastName" onChange={handleChange} />
                         </div>
-                        <input type="text" placeholder="Username" value={username} name="username" onChange={onChange} />
-                        <input type="password" placeholder="Password" value={password} name="password" onChange={onChange} />
-                        <input type="password" placeholder="Password" value={confirmPassword} name="confirmPassword" onChange={onChange} />
+                        <input type="text" placeholder="Username" value={username} name="username" onChange={handleChange} />
+                        <input type="password" placeholder="Password" value={password} name="password" onChange={handleChange} />
+                        <input type="password" placeholder="Confirm password" value={confirmPassword} name="confirmPassword" onChange={handleChange} />
                         <button type="submit">Sign Up</button>
                         <p className={styles.login}>Already have an account? <Link href="/login">Log in</Link></p>
                     </form>
