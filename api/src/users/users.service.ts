@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './users.schema';
+import { User } from './schemas/users.schema';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
@@ -16,5 +16,13 @@ export class UsersService {
 
   async findByUsername(username: string): Promise<User | null> {
     return this.userModel.findOne({ username }).exec();
+  }
+
+  async findById(id: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
   }
 }

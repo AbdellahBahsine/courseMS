@@ -6,9 +6,10 @@ import Image from 'next/image';
 
 import Link from 'next/link';
 import axios from 'axios';
-import { useRouter } from "next/navigation";
 
 import {showErrorToast, showSuccessToast} from '../components/showToast/page';
+import withGuest from "../components/WithGuest/WithGuest";
+import { useUser } from '../context/user.context';
 
 const page = () => {
 
@@ -16,7 +17,7 @@ const page = () => {
         username: "",
         password: ""
     });
-    const router = useRouter();
+    const {setUser} = useUser();
 
     const { username, password } = userCredentials;
 
@@ -35,17 +36,23 @@ const page = () => {
             });
 
             const { access_token } = response.data;
+
+            const user = {
+                username: response.data.username,
+                firstName: response.data.firstName,
+                lastName: response.data.lastName
+            }
             
             localStorage.setItem('accessToken', access_token);
 
             showSuccessToast('Login successful!');
+            
+            setUser(user);
 
             setUserCredentials({
                 username: "",
                 password: ""
             });
-
-            router.push("/");
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 showErrorToast(err.response.data.message);
@@ -76,4 +83,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default withGuest(page);

@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useRouter } from "next/navigation";
 
 import { showErrorToast, showSuccessToast } from '../components/showToast/page';
+import withGuest from "../components/WithGuest/WithGuest";
 
 const page = () => {
 
@@ -99,4 +100,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default withGuest(page);

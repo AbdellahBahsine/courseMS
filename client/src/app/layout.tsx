@@ -5,6 +5,8 @@ import "./globals.css";
 import Header from './components/Header/page';
 import ToastProvider from "./components/ToastProvider/page";
 
+import { UserProvider } from './context/user.context';
+
 const openSans = Open_Sans({
 	subsets: ["latin"],
 	weight: ['300', '400', '500', '700'],
@@ -24,10 +26,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.className}`}>
           <ToastProvider>
-            <Header />
-            <main>
-              {children}
-            </main>
+            <UserProvider>
+              <Header />
+              <main>
+                {children}
+              </main>
+            </UserProvider>
           </ToastProvider>
       </body>
     </html>
