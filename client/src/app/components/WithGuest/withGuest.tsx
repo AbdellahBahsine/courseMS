@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '../../context/user.context';
 
-const withGuest = (WrappedComponent: React.ComponentType) => {
-    const Wrapper = (props: any) => {
+const withGuest = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+    const Wrapper = (props: P) => {
         const router = useRouter();
         const { user, loading } = useUser();
         const [isClient, setIsClient] = useState(false);

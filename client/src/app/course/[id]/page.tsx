@@ -6,6 +6,14 @@ import styles from "./course.module.css";
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 
+interface courseObject {
+    _id: string;
+    title: string;
+    description: string;
+    instructor: string;
+    schedule: string;
+};
+
 const Course = () => {
 
     const [course, setCourse] = useState<courseObject | null>(null);
@@ -16,7 +24,7 @@ const Course = () => {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URI}/courses/${params.id}`)
 
             setCourse(response.data);
-        } catch (err) {
+        } catch {
             setCourse(null);
         }
     }

@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { showErrorToast, showSuccessToast } from '../components/showToast/showToast';
 import withGuest from "../components/WithGuest/withGuest";
 
-const page = () => {
+const SignUp = () => {
 
     const [userCredentials, setUserCredentials] = useState({
         firstName: "",
@@ -99,4 +99,4 @@ const page = () => {
     )
 }
 
-export default withGuest(page);
+export default withGuest(SignUp);

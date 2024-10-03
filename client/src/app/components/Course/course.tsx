@@ -1,7 +1,19 @@
 import styles from "./page.module.css";
-import '../../../interfaces/gloabl.interface';
 
 import Link from 'next/link';
+
+interface courseObject {
+    _id: string;
+    title: string;
+    description: string;
+    instructor: string;
+    schedule: string;
+};
+
+interface CourseProps {
+    course: courseObject;
+}
+
 
 const Course: React.FC<CourseProps> = ({course}) => {
     return (

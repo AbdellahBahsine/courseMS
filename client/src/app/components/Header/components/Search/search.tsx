@@ -6,9 +6,20 @@ import styles from "./page.module.css";
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios';
 
-import '../../../../../interfaces/gloabl.interface';
 import { truncateString } from "@/app/utils/truncate";
 import Link from "next/link";
+
+interface courseObject {
+    _id: string;
+    title: string;
+    description: string;
+    instructor: string;
+    schedule: string;
+};
+
+interface SearchProps {
+    setSearchVisible: (boolean : boolean) => void;
+};
 
 const Search: React.FC<SearchProps> = ({ setSearchVisible }) => {
     const [searchResults, setSearchResults] = useState<courseObject[]>([]);
@@ -21,7 +32,7 @@ const Search: React.FC<SearchProps> = ({ setSearchVisible }) => {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URI}/courses/search?title=${encodeURIComponent(e.target.value)}`);
                 setSearchResults(response.data);
                 setSearchVisible(true);
-            } catch (err) {}
+            } catch {}
         } else {
             setSearchResults([]);
             setSearchVisible(false);
@@ -38,8 +49,8 @@ const Search: React.FC<SearchProps> = ({ setSearchVisible }) => {
                 searchQuery.length > 0 && searchResults.length > 0 ? (
                     <div className={styles.search_results}>
                         {
-                            searchResults.map((result: courseObject) => (
-                                <div className={styles.result_course}>
+                            searchResults.map((result: courseObject, index : number) => (
+                                <div key={index} className={styles.result_course}>
                                     <Link href={`/course/${result._id}`}>
                                         <h3>{truncateString(result?.title)}</h3>
                                         <p>by: {truncateString(result?.instructor)}</p>

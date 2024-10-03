@@ -11,8 +11,21 @@ import axios from 'axios';
 import Search from './components/Search/search';
 import { showErrorToast, showSuccessToast } from '../showToast/showToast';
 
-import '../../../interfaces/gloabl.interface';
 import { truncateString } from '@/app/utils/truncate';
+
+interface courseObject {
+    _id: string;
+    title: string;
+    description: string;
+    instructor: string;
+    schedule: string;
+};
+
+interface newCourseObject {
+    title: string;
+    description: string;
+    schedule: string;
+}
 
 const Header = () => {
 
@@ -35,7 +48,7 @@ const Header = () => {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URI}/courses/search?title=${encodeURIComponent(e.target.value)}`);
                 setSearchResults(response.data);
                 setSearchVisible(true);
-            } catch (err) {}
+            } catch {}
         } else {
             setSearchResults([]);
             setSearchVisible(false);
@@ -102,9 +115,7 @@ const Header = () => {
           showSuccessToast("Logged out successfully!");
 
           window.location.href = '/login'; 
-        } catch (error) {
-          
-        }
+        } catch {}
       };
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -150,8 +161,8 @@ const Header = () => {
                             <div className={styles.search_results}>
                                 <ul>
                                     {
-                                        searchResults.map((result : courseObject) => (
-                                            <div className={styles.result_course}>
+                                        searchResults.map((result : courseObject, index: number) => (
+                                            <div key={index} className={styles.result_course}>
                                                 <Link href={`/course/${result._id}`}>
                                                     <h3>{truncateString(result?.title)}</h3>
                                                     <p>by: {truncateString(result?.instructor)}</p>

@@ -5,7 +5,18 @@ import styles from "./page.module.css";
 
 import { IoMdClose } from "react-icons/io";
 
-import '../../../interfaces/gloabl.interface';
+interface filtersObject {
+    title?: string;
+    instructor?: string;
+}
+  
+interface FilterProps {
+    isFiltersOpen: boolean;
+    setIsFiltersOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    filters: filtersObject;
+    setFilters: React.Dispatch<React.SetStateAction<filtersObject>>;
+    setFiltersApplied:(boolean : boolean) => void;
+}
 
 const Filters: React.FC<FilterProps> = ({isFiltersOpen, setIsFiltersOpen, filters, setFilters, setFiltersApplied}) => {
 

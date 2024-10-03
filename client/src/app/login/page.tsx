@@ -11,7 +11,7 @@ import {showErrorToast, showSuccessToast} from '../components/showToast/showToas
 import withGuest from "../components/WithGuest/withGuest";
 import { useUser } from '../context/user.context';
 
-const page = () => {
+const Login = () => {
 
     const [userCredentials, setUserCredentials] = useState({
         username: "",
@@ -82,4 +82,4 @@ const page = () => {
     )
 }
 
-export default withGuest(page);
+export default withGuest(Login);

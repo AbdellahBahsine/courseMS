@@ -35,7 +35,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     },
                     });
                     setUser(response.data);
-                } catch (err) {}
+                } catch {}
             }
             setLoading(false);
         };

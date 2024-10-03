@@ -10,7 +10,17 @@ import Course from './components/Course/course';
 import Filters from './components/Filters/filters';
 import { useUser } from "./context/user.context";
 
-import '../interfaces/gloabl.interface';
+type Params = {
+  page: number;
+  limit: number;
+  title?: string;
+  instructor?: string;
+};
+
+interface filtersObject {
+  title?: string;
+  instructor?: string;
+}
 
 function Home() {
 
@@ -32,7 +42,7 @@ function Home() {
     const fetchCourses = async (page: number) => {
 
       try {
-        const params: any = { page, limit };
+        const params: Params = { page, limit };
 
         if (title) {
           params.title = title;
@@ -47,8 +57,7 @@ function Home() {
         setCourses(data.courses);
         setTotal(data.total);
         setFiltersApplied(false);
-      } catch (error) {
-        console.error('Error fetching courses:', error);
+      } catch {
         setFiltersApplied(false);
       }
     };
