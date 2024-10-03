@@ -8,13 +8,13 @@ import { FaSearch } from "react-icons/fa";
 import { useUser } from '@/app/context/user.context';
 import axios from 'axios';
 
-import Search from './components/Search/page';
-import { showErrorToast, showSuccessToast } from '../showToast/page';
+import Search from './components/Search/search';
+import { showErrorToast, showSuccessToast } from '../showToast/showToast';
 
 import '../../../interfaces/gloabl.interface';
 import { truncateString } from '@/app/utils/truncate';
 
-const Page = () => {
+const Header = () => {
 
     const [searchResults, setSearchResults] = useState<courseObject[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -223,4 +223,4 @@ const Page = () => {
     )
 }
 
-export default Page;
+export default Header;

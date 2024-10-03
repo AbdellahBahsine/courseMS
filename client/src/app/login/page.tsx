@@ -7,8 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
 
-import {showErrorToast, showSuccessToast} from '../components/showToast/page';
-import withGuest from "../components/WithGuest/WithGuest";
+import {showErrorToast, showSuccessToast} from '../components/showToast/showToast';
+import withGuest from "../components/WithGuest/withGuest";
 import { useUser } from '../context/user.context';
 
 const page = () => {

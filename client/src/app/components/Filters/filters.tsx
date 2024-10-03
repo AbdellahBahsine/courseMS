@@ -7,7 +7,7 @@ import { IoMdClose } from "react-icons/io";
 
 import '../../../interfaces/gloabl.interface';
 
-const page: React.FC<PageProps> = ({isFiltersOpen, setIsFiltersOpen, filters, setFilters, setFiltersApplied}) => {
+const Filters: React.FC<FilterProps> = ({isFiltersOpen, setIsFiltersOpen, filters, setFilters, setFiltersApplied}) => {
 
     const [clearTitle, setClearTitle] = useState<boolean>(false);
     const [clearInstructor, setClearInstructor] = useState<boolean>(false);
@@ -79,4 +79,4 @@ const page: React.FC<PageProps> = ({isFiltersOpen, setIsFiltersOpen, filters, se
     )
 }
 
-export default page;
+export default Filters;

@@ -21,7 +21,7 @@ interface filtersObject {
     instructor?: string;
 }
   
-interface PageProps {
+interface FilterProps {
     isFiltersOpen: boolean;
     setIsFiltersOpen: React.Dispatch<React.SetStateAction<boolean>>;
     filters: filtersObject;

@@ -6,8 +6,8 @@ import styles from "./page.module.css";
 import Masonry from 'react-masonry-css';
 import axios from 'axios';
 
-import Course from './components/Course/page';
-import Filters from './components/Filters/page';
+import Course from './components/Course/course';
+import Filters from './components/Filters/filters';
 import { useUser } from "./context/user.context";
 
 import '../interfaces/gloabl.interface';

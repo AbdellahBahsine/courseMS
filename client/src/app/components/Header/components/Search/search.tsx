@@ -10,7 +10,7 @@ import '../../../../../interfaces/gloabl.interface';
 import { truncateString } from "@/app/utils/truncate";
 import Link from "next/link";
 
-const page: React.FC<SearchProps> = ({ setSearchVisible }) => {
+const Search: React.FC<SearchProps> = ({ setSearchVisible }) => {
     const [searchResults, setSearchResults] = useState<courseObject[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -57,4 +57,4 @@ const page: React.FC<SearchProps> = ({ setSearchVisible }) => {
     );
 }
 
-export default page;
+export default Search;

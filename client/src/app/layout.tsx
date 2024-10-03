@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
-import Header from './components/Header/page';
-import ToastProvider from "./components/ToastProvider/page";
+import Header from './components/Header/header';
+import ToastProvider from "./components/ToastProvider/toastProvider";
 
 import { UserProvider } from './context/user.context';
 
