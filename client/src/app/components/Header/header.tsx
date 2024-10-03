@@ -77,21 +77,30 @@ const Header = () => {
         e.preventDefault();
 
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URI}/courses`, {
-                ...newCourse,
-                instructor: `${user?.firstName} ${user?.lastName}`
-            });
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                await axios.post(`${process.env.NEXT_PUBLIC_API_URI}/courses`, {
+                    ...newCourse,
+                    instructor: `${user?.firstName} ${user?.lastName}`
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
 
-            showSuccessToast("Course created successfully!");
+                showSuccessToast("Course created successfully!");
 
-            setNewCourse({
-                title: '',
-                description: '',
-                schedule: ''
-            });
+                setNewCourse({
+                    title: '',
+                    description: '',
+                    schedule: ''
+                });
 
-            setShowCoursePopup(false);
-            setCourseCreated(true);
+                setShowCoursePopup(false);
+                setCourseCreated(true);
+            } else {
+                showErrorToast("Unauthorized");
+            }
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 showErrorToast(err.response.data.message);
