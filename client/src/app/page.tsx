@@ -30,7 +30,7 @@ function Home() {
     const {title, instructor} = filters;
 
     const fetchCourses = async (page: number) => {
-      console.log("heeey", title);
+
       try {
         const params: any = { page, limit };
 
@@ -65,7 +65,6 @@ function Home() {
     }
 
     useEffect(() => {
-      console.log("ETESTSTE");
       fetchCourses(page);
     }, [page, courseCreated, filtersApplied]);
 

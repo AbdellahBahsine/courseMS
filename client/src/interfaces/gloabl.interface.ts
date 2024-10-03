@@ -8,7 +8,7 @@ interface courseObject {
 
 interface CourseProps {
     course: courseObject;
-  }
+}
 
 interface newCourseObject {
     title: string;
@@ -27,4 +27,8 @@ interface PageProps {
     filters: filtersObject;
     setFilters: React.Dispatch<React.SetStateAction<filtersObject>>;
     setFiltersApplied:(boolean : boolean) => void;
+}
+
+interface SearchProps {
+    setSearchVisible: (boolean : boolean) => void;
 }

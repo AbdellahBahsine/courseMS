@@ -10,7 +10,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: 'http://localhost:3000', // Your Next.js frontend URL
+      origin: process.env.CLIENT_URI,
       credentials: true,
     },
   });
@@ -20,7 +20,5 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
   await app.listen(5000);
-
-  console.log("Connected!!!");
 }
 bootstrap();

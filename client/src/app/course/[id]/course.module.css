@@ -31,3 +31,19 @@
 .lorem {
     margin-top: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+    .course_inner {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .course {
+        padding: 0 2rem;
+    }
+
+    .course_inner {
+        margin: 40px 0;
+    }
+}
