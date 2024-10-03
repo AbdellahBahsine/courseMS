@@ -71,7 +71,7 @@ const Login = () => {
                         <input type="text" placeholder="Username" value={username} name="username" onChange={handleChange} />
                         <input type="password" placeholder="Password" value={password} name="password" onChange={handleChange} />
                         <button type="submit">Log in</button>
-                        <p className={styles.register}>Don't have an account? <Link href="/signup">Register</Link></p>
+                        <p className={styles.register}>Don&apos;t have an account? <Link href="/signup">Register</Link></p>
                     </form>
                 </div>
                 <div className={styles.login_image}>
