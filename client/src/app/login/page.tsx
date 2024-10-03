@@ -64,6 +64,11 @@ const Login = () => {
     return (
         <div className={styles.login}>
             <div className={styles.login__inner}>
+
+                <div className={styles.login_image}>
+                    <Image src="/illustrations/Learning-cuate.svg" alt="Login" layout="fill" objectFit="cover" quality={100} />
+                </div>
+                
                 <div className={styles.login_form}>
                     <h1>Log <span>In</span></h1>
                     <div className={styles.line}></div>
@@ -73,9 +78,6 @@ const Login = () => {
                         <button type="submit">Log in</button>
                         <p className={styles.register}>Don&apos;t have an account? <Link href="/signup">Register</Link></p>
                     </form>
-                </div>
-                <div className={styles.login_image}>
-                    <Image src="/illustrations/woman_studying.png" alt="Login" layout="fill" objectFit="cover" quality={100} />
                 </div>
             </div>
         </div>

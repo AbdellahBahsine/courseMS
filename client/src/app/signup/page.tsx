@@ -76,6 +76,10 @@ const SignUp = () => {
     return (
         <div className={styles.signup}>
             <div className={styles.signup__inner}>
+                <div className={styles.signup_image}>
+                    <Image src="/illustrations/Learning-cuate.svg" alt="signup" layout="fill" objectFit="cover" quality={100} />
+                </div>
+
                 <div className={styles.signup_form}>
                     <h1>Sign <span>Up</span></h1>
                     <div className={styles.line}></div>
@@ -90,9 +94,6 @@ const SignUp = () => {
                         <button type="submit">Sign Up</button>
                         <p className={styles.login}>Already have an account? <Link href="/login">Log in</Link></p>
                     </form>
-                </div>
-                <div className={styles.signup_image}>
-                    <Image src="/illustrations/woman_studying.png" alt="signup" layout="fill" objectFit="cover" quality={100} />
                 </div>
             </div>
         </div>
