@@ -1,17 +1,26 @@
 .login {
     height: 100%;
+	width: 100%;
+	padding: 0 6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .login__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 6rem;
     height: 100%;
+	max-width: 1124px;
+	width: 100%;
+	padding-bottom: 12rem;
+	padding-top: 3rem;
 }
 
 .login_form {
-    width: 400px;
+	max-width: 460px;
+	width: 100%;
     margin-bottom: 2rem;
 }
 
@@ -42,11 +51,12 @@
 }
 
 .login_form form input {
-    padding: 0.7rem;
+    padding: 0.7rem 1.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
-    height: 60px;
+    height: 80px;
     outline: none;
+	font-size: 1.1rem;
 }
 
 .login_form form button {
@@ -55,12 +65,14 @@
     border: 1px solid var(--secondary);
     color: var(--secondary);
     cursor: pointer;
-    height: 60px;
+    height: 80px;
     font-weight: 700;
+	font-size: 1.2rem;
 }
 
 .register {
-    margin-top: .7rem;
+    margin-top: 1rem;
+	font-size: 1.1rem;
 }
 
 .register a {
@@ -78,7 +90,7 @@
     height: auto !important;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1290px) {
     .login_image {
         display: none;
     }
@@ -89,18 +101,19 @@
 }
 
 @media screen and (max-width: 768px) {
-    .login__inner {
-        padding: 0 2rem;
-    }
+
+	.login {
+		padding: 0 2rem;
+	}
 }
 
 @media screen and (max-width: 555px) {
-    .login_form {
-        width: 80%;
-    }
+	.login_form {
+		max-width: 100%;
+	}
 
     .login_form h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }
 

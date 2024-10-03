@@ -54,3 +54,9 @@ main {
     color-scheme: dark;
   }
 }
+
+@media (min-height: 786px) {
+    main {
+		margin-top: 80px;
+	}
+}

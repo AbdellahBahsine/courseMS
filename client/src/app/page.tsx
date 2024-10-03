@@ -85,31 +85,35 @@ function Home() {
     <div className={styles.home}>
 
       <div className={styles.header}>
-        <h2>Courses</h2>
-        <button className={styles.filters_btn} onClick={handleClick}>All Filters</button>
+	  	<div className={styles.header__inner}>
+			<h2>Courses</h2>
+			<button className={styles.filters_btn} onClick={handleClick}>All Filters</button>
+		</div>
       </div>
       <div className={`${styles.home__inner} ${isFiltersOpen ? styles.shrink : ''}`}>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className={styles.courses}
-          columnClassName={styles.my_masonry_grid_column}
-        >
-          {
-            courses.map((course, index) => (
-              <Course key={index} course={course} />
-            ))
-          }
-        </Masonry>
-        <div className={styles.pagination}>
-          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-            Previous
-          </button>
-          <span>
-            Page {page} of {totalPages}
-          </span>
-          <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
-            Next
-          </button>
+        <div className={styles.courses_inner}>
+			<Masonry
+			breakpointCols={breakpointColumnsObj}
+			className={styles.courses}
+			columnClassName={styles.my_masonry_grid_column}
+			>
+			{
+				courses.map((course, index) => (
+				<Course key={index} course={course} />
+				))
+			}
+			</Masonry>
+			<div className={styles.pagination}>
+			<button disabled={page === 1} onClick={() => setPage(page - 1)}>
+				Previous
+			</button>
+			<span>
+				Page {page} of {totalPages}
+			</span>
+			<button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+				Next
+			</button>
+		</div>
       </div>
         <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} filters={filters} setFilters={setFilters} setFiltersApplied={setFiltersApplied} />
       </div>
