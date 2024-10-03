@@ -30,7 +30,6 @@ const page = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(userCredentials);
 
         if (password !== confirmPassword) {
             showErrorToast('Passwords do not match.');
@@ -80,7 +79,7 @@ const page = () => {
                 <div className={styles.signup_form}>
                     <h1>Sign <span>Up</span></h1>
                     <div className={styles.line}></div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} action="#">
                         <div className={styles.fullname}>
                             <input type="text" placeholder="First name" value={firstName} name="firstName" onChange={handleChange} />
                             <input type="text" placeholder="Last name" value={lastName} name="lastName" onChange={handleChange} />

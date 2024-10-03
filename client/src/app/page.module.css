@@ -39,6 +39,7 @@
   padding: 0 6rem;
   height: 60px;
   background-color: white;
+  z-index: 1;
 }
 
 .filters_btn {

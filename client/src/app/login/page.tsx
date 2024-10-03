@@ -27,7 +27,6 @@ const page = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(userCredentials);
 
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URI}/auth/login`, {
@@ -68,7 +67,7 @@ const page = () => {
                 <div className={styles.login_form}>
                     <h1>Log <span>In</span></h1>
                     <div className={styles.line}></div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} action="#">
                         <input type="text" placeholder="Username" value={username} name="username" onChange={handleChange} />
                         <input type="password" placeholder="Password" value={password} name="password" onChange={handleChange} />
                         <button type="submit">Log in</button>
