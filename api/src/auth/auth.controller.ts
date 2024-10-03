@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UnauthorizedException, ConflictException } from '@nestjs/common';
+import { Controller, Post, Body, Req, UnauthorizedException, ConflictException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
@@ -39,5 +39,14 @@ export class AuthController {
       throw new ConflictException('Username already exists');
     }
     return this.usersService.create(username, password, firstName, lastName);
+  }
+
+  @Post('logout')
+  async logout(@Req() request: Request) {
+    const token = request.headers['authorization']?.split(' ')[1];
+    if (!token) {
+      throw new UnauthorizedException('Token is required');
+    }
+    return this.authService.signOut(token);
   }
 }
