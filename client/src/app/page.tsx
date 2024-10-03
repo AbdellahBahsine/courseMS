@@ -8,7 +8,9 @@ import axios from 'axios';
 
 import Course from './components/Course/page';
 import Filters from './components/Filters/page';
-import withAuth from './components/WithAuth/WithAuth';
+import { useUser } from "./context/user.context";
+
+import '../interfaces/gloabl.interface';
 
 function Home() {
 
@@ -17,16 +19,37 @@ function Home() {
     const [total, setTotal] = useState(0);
     const limit = 10;
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [totalPages, setTotalPages] = useState<number>(Math.ceil(total / limit));
+    const [filters, setFilters] = useState<filtersObject>({
+      title: '',
+      instructor: ''
+    });
+    const [filtersApplied, setFiltersApplied] = useState<boolean>(false);
+    const {courseCreated} = useUser();
+
+    const {title, instructor} = filters;
 
     const fetchCourses = async (page: number) => {
+      console.log("heeey", title);
       try {
+        const params: any = { page, limit };
+
+        if (title) {
+          params.title = title;
+        }
+        if (instructor) {
+          params.instructor = instructor;
+        }
         const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URI}/courses`, {
-          params: { page, limit },
+          params,
         });
+
         setCourses(data.courses);
         setTotal(data.total);
+        setFiltersApplied(false);
       } catch (error) {
         console.error('Error fetching courses:', error);
+        setFiltersApplied(false);
       }
     };
 
@@ -42,10 +65,13 @@ function Home() {
     }
 
     useEffect(() => {
+      console.log("ETESTSTE");
       fetchCourses(page);
-    }, [page]);
+    }, [page, courseCreated, filtersApplied]);
 
-    const totalPages = Math.ceil(total / limit);
+    useEffect(() => {
+      setTotalPages(Math.ceil(total / limit));
+    }, [total])
 
   return (
     <div className={styles.home}>
@@ -77,11 +103,11 @@ function Home() {
             Next
           </button>
       </div>
-        <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} />
+        <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} filters={filters} setFilters={setFilters} setFiltersApplied={setFiltersApplied} />
       </div>
 
     </div>
   );
 }
 
-export default withAuth(Home);;
+export default Home;

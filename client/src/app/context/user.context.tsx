@@ -13,6 +13,8 @@ interface UserContextType {
     user: UserProfile | null;
     loading: boolean;
     setUser: (user: UserProfile | null) => void;
+    courseCreated: boolean;
+    setCourseCreated: (boolean : boolean) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -20,6 +22,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [courseCreated, setCourseCreated] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -43,7 +46,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (loading) return null;
 
     return (
-        <UserContext.Provider value={{ user, loading, setUser }}>
+        <UserContext.Provider value={{ user, loading, setUser, courseCreated, setCourseCreated }}>
             {children}
         </UserContext.Provider>
     );

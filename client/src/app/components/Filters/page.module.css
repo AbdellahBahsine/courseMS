@@ -40,6 +40,11 @@
     width: 100%;
 }
 
+.filter_inner {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
 .filters h5 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
@@ -49,10 +54,18 @@
 .filters input {
     width: 100%;
     padding: 0.7rem;
-    margin-bottom: 1rem;
     border: 1px solid #ccc;
     height: 46px;
     outline: none;
+}
+
+.clear_input {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 .apply_btn {

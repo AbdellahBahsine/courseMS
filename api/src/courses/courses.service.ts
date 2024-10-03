@@ -13,15 +13,30 @@ export class CoursesService {
         return createdCourse.save();
     }
 
-    async findAll(page: number = 1, limit: number = 10): Promise<{ courses: Course[]; total: number }> {
-        const total = await this.courseModel.countDocuments().exec();
+    async findAll(page: number = 1, limit: number = 10, title?: string, instructor?: string,): Promise<{ courses: Course[]; total: number }> {
+        const filters: any = {};
+
+        if (title) {
+            filters.title = { $regex: title, $options: 'i' };
+        }
+        if (instructor) {
+            filters.instructor = { $regex: instructor, $options: 'i' };
+        }
+        const total = await this.courseModel.countDocuments(filters).exec();
         const courses = await this.courseModel
-        .find()
+        .find(filters)
         .skip((page - 1) * limit)
         .limit(limit)
         .exec();
 
         return { courses, total };
+    }
+
+    async searchCoursesByTitle(title: string): Promise<Course[]> {
+        return this.courseModel
+          .find({ title: { $regex: title, $options: 'i' } })
+          .limit(5)
+          .exec();
     }
 
     async findOne(id: string): Promise<Course> {

@@ -15,6 +15,7 @@
   
 .course h1 {
   font-size: 1rem;
+  text-transform: capitalize;
 }
   
 .course p {
