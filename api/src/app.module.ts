@@ -23,11 +23,3 @@ export class AppModule implements NestModule {
     .forRoutes('*');
   }
 }
-
-// exclude(
-//   { path: 'auth/login', method: RequestMethod.POST },
-//   { path: 'auth/register', method: RequestMethod.POST },
-//   // { path: 'courses', method: RequestMethod.GET },
-//   { path: 'courses/:id', method: RequestMethod.GET },
-//   { path: 'courses/search', method: RequestMethod.GET },
-// )

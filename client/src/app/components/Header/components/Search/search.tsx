@@ -51,7 +51,7 @@ const Search: React.FC<SearchProps> = ({ setSearchVisible }) => {
                         {
                             searchResults.map((result: courseObject, index : number) => (
                                 <div key={index} className={styles.result_course}>
-                                    <Link href={`/course/${result._id}`}>
+                                    <Link href={`/course/${result._id}`} onClick={() => setSearchVisible(false)}>
                                         <h3>{truncateString(result?.title)}</h3>
                                         <p>by: {truncateString(result?.instructor)}</p>
                                     </Link>

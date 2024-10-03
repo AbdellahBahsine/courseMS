@@ -72,14 +72,14 @@ const Filters: React.FC<FilterProps> = ({isFiltersOpen, setIsFiltersOpen, filter
                 <div className={styles.filter}>
                     <h5>Instructor name</h5>
                     <div className={styles.filter_inner}>
-                        <input type="text" placeholder="Search instructor" value={filters.instructor || ''} name="instructor" onChange={handleChange} />
+                        <input type="text" placeholder="Search instructor..." value={filters.instructor || ''} name="instructor" onChange={handleChange} />
                         {clearInstructor && <IoMdClose className={styles.clear_input} name="instructor" onClick={() => handleClearInput("instructor")} />}
                     </div>
                 </div>
                 <div className={styles.filter}>
                     <h5>Course name</h5>
                     <div className={styles.filter_inner}>
-                        <input type="text" placeholder="Search course" value={filters.title || ''} name="title" onChange={handleChange} />
+                        <input type="text" placeholder="Search course..." value={filters.title || ''} name="title" onChange={handleChange} />
                         {clearTitle && <IoMdClose className={styles.clear_input} onClick={() => handleClearInput("title")} />}
                     </div>
                 </div>
