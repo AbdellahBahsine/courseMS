@@ -74,6 +74,9 @@ function Home() {
     }
 
     useEffect(() => {
+      if (filtersApplied) {
+        setPage(1);
+      }
       fetchCourses(page);
     }, [page, courseCreated, filtersApplied]);
 
